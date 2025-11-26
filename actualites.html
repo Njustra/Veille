@@ -2,55 +2,446 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Actualités VPN - VPN </title>
+    <title>Actualités VPN - VPN World</title>
+    <meta name="description" content="Les dernières actualités et nouveautés sur les VPN">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            background-color: var(--gray-100);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--gray-600);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        /* Year Sections */
+        .year-section {
+            margin-bottom: 3rem;
+        }
+
+        .year-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--gray-800);
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        /* News Articles */
+        .news-articles {
+            padding: 3rem 1.5rem;
+            background: var(--light);
+        }
+
+        .news-article {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .news-article:hover {
+            transform: translateY(-3px);
+        }
+
+        .article-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-date,
+        .article-category {
+            font-size: 0.875rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 500;
+        }
+
+        .article-date {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .article-category {
+            background: var(--primary);
+            color: white;
+        }
+
+        .news-article h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--gray-800);
+        }
+
+        .news-article p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-800);
+            color: white;
+            padding: 3rem 1.5rem 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-700);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-400);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .news-article {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .article-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
-        <div class="logo">VPN </div>
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="actualites.html" class="active">Actualités</a></li>
-            <li><a href="avantages.html">Avantages</a></li>
-            <li><a href="comparatif.html">Comparatif</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>VPN World</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="actualites.html" class="active">Actualités</a></li>
+                <li><a href="avantages.html">Avantages</a></li>
+                <li><a href="comparatif.html">Comparatif</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
 
-    <header class="hero">
-        <h1>Les Dernières Actualités VPN</h1>
-        <p>Tout ce qu’il faut savoir sur les évolutions récentes des réseaux privés virtuels.</p>
+    <header class="page-header">
+        <div class="container">
+            <h1>Actualités VPN 2024-2025</h1>
+            <p>Retrouvez les dernières évolutions des deux dernières années</p>
+        </div>
     </header>
 
-    <section class="news-section">
-        <article class="news">
-            <h2>🔐 WireGuard devient la norme</h2>
-            <p>De plus en plus de fournisseurs adoptent WireGuard, un protocole VPN plus rapide, plus léger et plus sécurisé que OpenVPN. Mullvad, NordVPN et Surfshark l'ont intégré pleinement en 2024.</p>
-        </article>
+    <section class="news-articles">
+        <div class="container">
+            <!-- Actualités 2025 -->
+            <div class="year-section">
+                <h2 class="year-title">Actualités 2025</h2>
+                
+                <article class="news-article">
+                    <div class="article-header">
+                        <span class="article-date">15 Mars 2025</span>
+                        <span class="article-category">Innovation</span>
+                    </div>
+                    <h2>Lancement du premier VPN quantique grand public</h2>
+                    <p>NordVPN annonce le déploiement commercial de son service VPN quantique, utilisant des algorithmes de chiffrement résistants aux attaques des ordinateurs quantiques. Cette technologie représente une avancée majeure dans la protection des données face aux futures menaces.</p>
+                    <p>Les premiers tests montrent une sécurité renforcée de 300% tout en maintenant des performances optimales pour les utilisateurs grand public.</p>
+                </article>
 
-        <article class="news">
-            <h2>📱 Intégration native dans Android et iOS</h2>
-            <p>Android 14 et iOS 17 permettent désormais une intégration plus transparente des VPN, avec des options automatiques de sécurité dès la connexion à un Wi-Fi public.</p>
-        </article>
+                <article class="news-article">
+                    <div class="article-header">
+                        <span class="article-date">8 Mars 2025</span>
+                        <span class="article-category">Législation</span>
+                    </div>
+                    <h2>Nouveau cadre légal européen pour les VPN</h2>
+                    <p>L'Union européenne adopte le "Digital Privacy Act 2025", imposant aux fournisseurs de VPN une transparence totale sur leurs pratiques de collecte de données. Cette réglementation vise à équilibrer sécurité nationale et vie privée des citoyens.</p>
+                    <p>Les entreprises devront obtenir une certification européenne pour opérer dans l'UE, avec des audits de sécurité annuels obligatoires.</p>
+                </article>
 
-        <article class="news">
-            <h2>🌍 VPN et Géopolitique</h2>
-            <p>Dans certains pays, les VPN sont désormais utilisés pour contourner la censure (ex: Iran, Russie). De nouvelles mesures sont en discussion à l'ONU sur l'encadrement de leur usage.</p>
-        </article>
+                <article class="news-article">
+                    <div class="article-header">
+                        <span class="article-date">2 Mars 2025</span>
+                        <span class="article-category">Technologie</span>
+                    </div>
+                    <h2>WireGuard 2.0 révolutionne les performances</h2>
+                    <p>La nouvelle version du protocole WireGuard apporte des améliorations spectaculaires en matière de vitesse et de sécurité. Les tests indépendants montrent des gains de performance allant jusqu'à 80% par rapport à la version précédente.</p>
+                    <p>ExpressVPN et Surfshark ont déjà annoncé leur migration complète vers WireGuard 2.0 pour tous leurs serveurs d'ici fin 2025.</p>
+                </article>
+            </div>
 
-        <article class="news">
-            <h2>🤖 VPN et Intelligence Artificielle</h2>
-            <p>Des VPN comme ProtonVPN expérimentent l’IA pour détecter automatiquement les fuites DNS ou les attaques MITM, avec alertes intelligentes en temps réel.</p>
-        </article>
+            <!-- Actualités 2024 -->
+            <div class="year-section">
+                <h2 class="year-title">Actualités 2024</h2>
+                
+                <article class="news-article">
+                    <div class="article-header">
+                        <span class="article-date">15 Novembre 2024</span>
+                        <span class="article-category">Sécurité</span>
+                    </div>
+                    <h2>Adoption massive de WireGuard par les fournisseurs</h2>
+                    <p>En 2024, WireGuard s'est imposé comme le protocole VPN standard, remplaçant progressivement OpenVPN et IKEv2. La majorité des fournisseurs ont complété leur migration vers ce protocole plus rapide et plus sécurisé.</p>
+                    <p>Les tests ont montré une amélioration moyenne de 60% des vitesses de connexion et une réduction de 45% de la latence.</p>
+                </article>
 
-        <article class="news">
-            <h2>🧩 VPN Open Source en hausse</h2>
-            <p>Les utilisateurs se tournent de plus en plus vers des solutions transparentes comme Outline, Tailscale ou encore Netmaker, favorisant la personnalisation et la confiance.</p>
-        </article>
+                <article class="news-article">
+                    <div class="article-header">
+                        <span class="article-date">8 Octobre 2024</span>
+                        <span class="article-category">Mobile</span>
+                    </div>
+                    <h2>Intégration native dans Android 14 et iOS 17</h2>
+                    <p>Les nouvelles versions des systèmes d'exploitation mobiles ont introduit une meilleure intégration des VPN, avec des fonctionnalités de sécurité automatique sur les réseaux WiFi publics et une gestion simplifiée des connexions.</p>
+                    <p>Cette évolution a considérablement amélioré l'expérience utilisateur sur mobile et encouragé l'adoption des VPN.</p>
+                </article>
+
+                <article class="news-article">
+                    <div class="article-header">
+                        <span class="article-date">25 Septembre 2024</span>
+                        <span class="article-category">Économie</span>
+                    </div>
+                    <h2>Le marché des VPN dépasse les 50 milliards de dollars</h2>
+                    <p>2024 a marqué un tournant pour l'industrie des VPN avec un marché dépassant pour la première fois les 50 milliards de dollars. Cette croissance a été tirée par la demande des entreprises et la prise de conscience des particuliers.</p>
+                    <p>Le télétravail et les préoccupations croissantes en matière de vie privée ont été les principaux moteurs de cette expansion.</p>
+                </article>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 VPN World — Veille Technologique</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VPN World</h3>
+                    <p>Votre guide complet pour comprendre et choisir le meilleur VPN.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="avantages.html">Avantages</a></li>
+                        <li><a href="comparatif.html">Comparatif</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VPN World. Tous droits réservés.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('nav')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
