@@ -3,84 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <title>Comparatif VPN - VPN World</title>
+    <meta name="description" content="Comparez les meilleurs VPN du marché en 2024">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            background-color: var(--gray-100);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--gray-600);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 3rem 1.5rem;
+            background: var(--light);
+        }
+
+        .comparison-table-container {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .comparison-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1.25rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .comparison-table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .vpn-name {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .rating {
+            color: var(--accent);
+        }
+
+        .score {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .key-features h2 {
+            text-align: center;
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+            color: var(--gray-800);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .feature-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--gray-800);
+        }
+
+        .feature-item p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-800);
+            color: white;
+            padding: 3rem 1.5rem 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: var(--gray-300);
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-700);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--gray-400);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .comparison-table {
+                font-size: 0.875rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
-        <div class="logo">VPN World</div>
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="actualites.html">Actualités</a></li>
-            <li><a href="avantages.html">Avantages</a></li>
-            <li><a href="comparatif.html" class="active">Comparatif</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>VPN World</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="avantages.html">Avantages</a></li>
+                <li><a href="comparatif.html" class="active">Comparatif</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
 
-    <header class="hero">
-        <h1>Comparatif des VPN (2025)</h1>
-        <p>Analyse des VPN les plus performants cette année en termes de sécurité, vitesse et rapport qualité/prix.</p>
+    <header class="page-header">
+        <div class="container">
+            <h1>Comparatif des VPN 2024</h1>
+            <p>Analyse détaillée des meilleurs services VPN du marché</p>
+        </div>
     </header>
 
-    <section class="table-section">
-        <table>
-            <thead>
-                <tr>
-                    <th>VPN</th>
-                    <th>Vitesse</th>
-                    <th>Confidentialité</th>
-                    <th>Prix (mois)</th>
-                    <th>Protocole</th>
-                    <th>Note Globale</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>NordVPN</td>
-                    <td>🔵🔵🔵🔵🔵</td>
-                    <td>🔐🔐🔐🔐</td>
-                    <td>3,49€</td>
-                    <td>WireGuard (NordLynx)</td>
-                    <td>9.5/10</td>
-                </tr>
-                <tr>
-                    <td>ExpressVPN</td>
-                    <td>🔵🔵🔵🔵</td>
-                    <td>🔐🔐🔐🔐🔐</td>
-                    <td>6,67€</td>
-                    <td>Lightway</td>
-                    <td>9/10</td>
-                </tr>
-                <tr>
-                    <td>ProtonVPN</td>
-                    <td>🔵🔵🔵</td>
-                    <td>🔐🔐🔐🔐🔐</td>
-                    <td>4,99€</td>
-                    <td>WireGuard</td>
-                    <td>8.8/10</td>
-                </tr>
-                <tr>
-                    <td>Surfshark</td>
-                    <td>🔵🔵🔵🔵</td>
-                    <td>🔐🔐🔐🔐</td>
-                    <td>2,29€</td>
-                    <td>WireGuard</td>
-                    <td>8.5/10</td>
-                </tr>
-                <tr>
-                    <td>Mullvad</td>
-                    <td>🔵🔵🔵</td>
-                    <td>🔐🔐🔐🔐🔐</td>
-                    <td>5€</td>
-                    <td>WireGuard</td>
-                    <td>8.3/10</td>
-                </tr>
-            </tbody>
-        </table>
+    <section class="comparison-section">
+        <div class="container">
+            <div class="comparison-table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>VPN</th>
+                            <th>Vitesse</th>
+                            <th>Confidentialité</th>
+                            <th>Prix mensuel</th>
+                            <th>Protocole</th>
+                            <th>Note globale</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="vpn-name">
+                                <strong>NordVPN</strong>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </td>
+                            <td>3,49€</td>
+                            <td>WireGuard (NordLynx)</td>
+                            <td>
+                                <span class="score">9.5/10</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vpn-name">
+                                <strong>ExpressVPN</strong>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>6,67€</td>
+                            <td>Lightway</td>
+                            <td>
+                                <span class="score">9.0/10</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vpn-name">
+                                <strong>ProtonVPN</strong>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>4,99€</td>
+                            <td>WireGuard</td>
+                            <td>
+                                <span class="score">8.8/10</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vpn-name">
+                                <strong>Surfshark</strong>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </td>
+                            <td>2,29€</td>
+                            <td>WireGuard</td>
+                            <td>
+                                <span class="score">8.5/10</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vpn-name">
+                                <strong>Mullvad</strong>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>5,00€</td>
+                            <td>WireGuard</td>
+                            <td>
+                                <span class="score">8.3/10</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="key-features">
+                <h2>Critères de comparaison</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h4>Vitesse</h4>
+                        <p>Performance du VPN en termes de débit et latence</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Confidentialité</h4>
+                        <p>Politique de logs et protection des données</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Protocoles</h4>
+                        <p>Technologies de chiffrement utilisées</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Rapport qualité-prix</h4>
+                        <p>Équilibre entre fonctionnalités et coût</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 VPN World — Veille Technologique</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VPN World</h3>
+                    <p>Votre guide complet pour comprendre et choisir le meilleur VPN.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="avantages.html">Avantages</a></li>
+                        <li><a href="comparatif.html">Comparatif</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VPN World. Tous droits réservés.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('nav')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
