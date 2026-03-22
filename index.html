@@ -266,26 +266,26 @@
             line-height: 1.6;
         }
 
-        /* News Preview */
-        .news-preview {
+        /* Reality Preview - Remplacement des actualités */
+        .reality-preview {
             padding: 4rem 1.5rem;
             background: var(--light);
         }
 
-        .news-preview h2 {
+        .reality-preview h2 {
             text-align: center;
             font-size: 2.25rem;
             margin-bottom: 3rem;
             color: var(--gray-800);
         }
 
-        .news-grid {
+        .reality-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
-        .news-card {
+        .reality-card {
             background: white;
             padding: 2rem;
             border-radius: 1rem;
@@ -293,17 +293,17 @@
             transition: transform 0.3s ease;
         }
 
-        .news-card:hover {
+        .reality-card:hover {
             transform: translateY(-3px);
         }
 
-        .news-card h3 {
+        .reality-card h3 {
             font-size: 1.25rem;
             margin-bottom: 1rem;
             color: var(--gray-800);
         }
 
-        .news-card p {
+        .reality-card p {
             color: var(--gray-600);
             margin-bottom: 1.5rem;
             line-height: 1.6;
@@ -413,7 +413,7 @@
             }
 
             .features-grid,
-            .news-grid {
+            .reality-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -508,19 +508,24 @@
         </div>
     </section>
 
-    <section class="news-preview">
+    <section class="reality-preview">
         <div class="container">
-            <h2>Actualités récentes</h2>
-            <div class="news-grid">
-                <article class="news-card">
-                    <h3>WireGuard devient la norme</h3>
-                    <p>De plus en plus de fournisseurs adoptent WireGuard, un protocole VPN plus rapide et plus sécurisé...</p>
-                    <a href="actualites.html" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+            <h2>La réalité d'aujourd'hui</h2>
+            <div class="reality-grid">
+                <article class="reality-card">
+                    <h3>Les cybermenaces en hausse de 40%</h3>
+                    <p>Selon le dernier rapport de l'ANSSI, les attaques par ransomware ont augmenté de 40% cette année, rendant la protection en ligne plus cruciale que jamais...</p>
+                    <a href="actualites.html" class="read-more">En savoir plus <i class="fas fa-arrow-right"></i></a>
                 </article>
-                <article class="news-card">
-                    <h3>Intégration native dans les OS</h3>
-                    <p>Android 14 et iOS 17 permettent une intégration plus transparente des VPN...</p>
-                    <a href="actualites.html" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                <article class="reality-card">
+                    <h3>75% des Français connectés sans protection</h3>
+                    <p>Une étude révèle que trois quarts des utilisateurs français se connectent à des réseaux publics sans aucune protection VPN, exposant leurs données personnelles...</p>
+                    <a href="actualites.html" class="read-more">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="reality-card">
+                    <h3>La surveillance numérique s'intensifie</h3>
+                    <p>Avec l'adoption de nouvelles lois sur la surveillance en ligne, la protection de la vie privée devient une nécessité plutôt qu'une option pour les internautes...</p>
+                    <a href="actualites.html" class="read-more">En savoir plus <i class="fas fa-arrow-right"></i></a>
                 </article>
             </div>
         </div>
