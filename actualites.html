@@ -69,7 +69,6 @@
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--primary);
@@ -312,10 +311,10 @@
         <div class="nav-container">
             <div class="logo"><i class="fas fa-shield-alt"></i><span>VPN World</span></div>
             <ul class="nav-links">
-                <li><a class="nav-tab-link active" data-tab="actu">Actualités</a></li>
-                <li><a class="nav-tab-link" data-tab="archives">Archives 2024-2025</a></li>
-                <li><a href="#">Avantages</a></li>
-                <li><a href="#">Comparatif</a></li>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="actualites.html" class="active">Actualités</a></li>
+                <li><a href="avantages.html">Avantages</a></li>
+                <li><a href="comparatif.html">Comparatif</a></li>
             </ul>
             <div class="nav-toggle"><span></span><span></span><span></span></div>
         </div>
@@ -427,10 +426,10 @@
                 <div class="footer-section">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="#" class="footer-tab-link" data-tab="actu">Actualités</a></li>
-                        <li><a href="#" class="footer-tab-link" data-tab="archives">Archives 2024-2025</a></li>
-                        <li><a href="#">Avantages</a></li>
-                        <li><a href="#">Comparatif</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="actualites.html">Actualités</a></li>
+                        <li><a href="avantages.html">Avantages</a></li>
+                        <li><a href="comparatif.html">Comparatif</a></li>
                     </ul>
                 </div>
             </div>
@@ -556,14 +555,12 @@
             document.getElementById("archives-tab").classList.remove("active");
             document.getElementById(`${tabId}-tab`).classList.add("active");
             document.querySelectorAll(".tab-btn").forEach(btn => { if (btn.getAttribute("data-tab") === tabId) btn.classList.add("active"); else btn.classList.remove("active"); });
-            document.querySelectorAll(".nav-tab-link, .footer-tab-link").forEach(link => { if (link.getAttribute("data-tab") === tabId) link.classList.add("active"); else link.classList.remove("active"); });
             if (tabId === "archives") renderArchives();
         }
 
         document.addEventListener("DOMContentLoaded", () => {
             loadData(); renderAll();
             document.querySelectorAll(".tab-btn").forEach(btn => btn.addEventListener("click", () => switchTab(btn.getAttribute("data-tab"))));
-            document.querySelectorAll(".nav-tab-link, .footer-tab-link").forEach(link => link.addEventListener("click", (e) => { e.preventDefault(); const tab = link.getAttribute("data-tab"); if (tab) switchTab(tab); }));
             const adminToggle = document.getElementById("adminToggle"), adminForm = document.getElementById("adminForm"), toggleIcon = document.getElementById("toggleIcon");
             adminToggle.addEventListener("click", () => { adminForm.classList.toggle("active"); toggleIcon.classList.toggle("fa-chevron-down"); toggleIcon.classList.toggle("fa-chevron-up"); });
             document.getElementById("addNewsBtn").addEventListener("click", () => {
